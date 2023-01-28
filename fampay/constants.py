@@ -1,0 +1,3 @@
+class PaginationError:
+    PAGINATION_ERROR_RESPONSE_CODE = 10
+    PAGINATION_ERROR_RESPONSE_MESSAGE = "Pagination Error"

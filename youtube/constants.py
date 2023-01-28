@@ -7,3 +7,5 @@ class ApiConstants:
     ORDER = 'date'
     RELEVENT_LANG = 'en'
     MAX_RESULTS = 30
+
+MAX_RETRY = 3

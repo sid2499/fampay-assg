@@ -6,17 +6,6 @@ services:
     image: redis:alpine
     container_name: redis
 
-  # Database Postgres
-#  db:
-#    image: postgres
-#    volumes:
-#      - ./data/db:/var/lib/postgresql/data
-#    environment:
-#      - POSTGRES_DB=postgres
-#      - POSTGRES_USER=postgres
-#      - POSTGRES_PASSWORD=postgres
-#    container_name: postgres_db
-
   # Django Application
   app:
     build: .
@@ -40,3 +29,15 @@ services:
     depends_on:
       - redis
       - app
+
+  # Celery Beat
+  celery-beat:
+    restart: always
+    build:
+      context: .
+    command: celery -A fampay beat --loglevel=debug --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    volumes:
+      - .:/django
+    container_name: celery-beat
+    depends_on:
+      - celery
