@@ -5,14 +5,15 @@ from django.db import models
 
 class Video(models.Model):
     id = models.CharField(max_length=30, primary_key=True)
-    title = models.CharField(max_length=200)
-    description = models.TextField()
+    title = models.CharField(max_length=200, db_index=True)
+    description = models.TextField(db_index=True)
     publishTime = models.DateTimeField(db_index=True)
     channelTitle = models.CharField(max_length=200)
     channelId = models.CharField(max_length=50)
 
     def __str__(self):
         return self.title
+
 
 
 class Thumbnail(models.Model):

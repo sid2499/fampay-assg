@@ -13,7 +13,7 @@ class VideoSerializer(serializers.ModelSerializer):
 
     def get_thumbnails(self, video):
         video_thumbnails = video.thumbnails.all()
-        return ThumbnailSerializer(video_thumbnails, many=True)
+        return ThumbnailSerializer(video_thumbnails, many=True).data
 
     class Meta:
         model = Video
